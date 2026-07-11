@@ -1,12 +1,10 @@
 {
 	"$schema": "./node_modules/wrangler/config-schema.json",
 	"compatibility_date": "2026-07-11",
-	"compatibility_flags": ["global_fetch_strictly_public"],
-	"name": "lucianoarossa-portfolio",
-	"main": "@astrojs/cloudflare/entrypoints/server",
+	"name": "portfolio",
+	// Sitio 100% estático: solo assets, sin código de worker (sin "main").
 	"assets": {
-		"directory": "./dist",
-		"binding": "ASSETS"
+		"directory": "./dist"
 	},
 	"observability": {
 		"enabled": true
