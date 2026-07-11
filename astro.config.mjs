@@ -1,8 +1,11 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 
+import cloudflare from '@astrojs/cloudflare';
+
 export default defineConfig({
   site: 'https://lucianoarossa.com',
+
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'es'],
@@ -10,4 +13,6 @@ export default defineConfig({
       prefixDefaultLocale: false,
     },
   },
+
+  adapter: cloudflare(),
 });
