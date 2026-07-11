@@ -1,0 +1,11 @@
+---
+import Base from '../../layouts/Base.astro';
+import Portfolio from '../../components/Portfolio.astro';
+import { ui } from '../../i18n/ui';
+
+const t = ui.es;
+---
+
+<Base lang="es" title={t.meta.title} description={t.meta.description}>
+  <Portfolio lang="es" />
+</Base>

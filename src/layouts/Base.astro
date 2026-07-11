@@ -1,0 +1,100 @@
+---
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+}
+
+const { lang, title, description } = Astro.props;
+const canonical = new URL(lang === 'en' ? '/' : '/es/', Astro.site);
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en" href={new URL('/', Astro.site)} />
+    <link rel="alternate" hreflang="es" href={new URL('/es/', Astro.site)} />
+    <link rel="alternate" hreflang="x-default" href={new URL('/', Astro.site)} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Martian+Mono:wght@400;700&display=swap"
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --bg: oklch(15.5% 0.014 255);
+    --bg-raised: oklch(19% 0.016 255);
+    --ink: oklch(93% 0.008 255);
+    --ink-muted: oklch(67% 0.018 255);
+    --line: oklch(29% 0.02 255);
+    --amber: oklch(79% 0.155 72);
+    --amber-deep: oklch(64% 0.14 60);
+    --amber-tint: oklch(79% 0.155 72 / 0.09);
+    --font-sans: 'Archivo', system-ui, sans-serif;
+    --font-mono: 'Martian Mono', ui-monospace, monospace;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    /* faint audit-grid backdrop */
+    background-image:
+      linear-gradient(oklch(93% 0.008 255 / 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(93% 0.008 255 / 0.025) 1px, transparent 1px);
+    background-size: 72px 72px;
+  }
+
+  ::selection {
+    background: var(--amber);
+    color: var(--bg);
+  }
+
+  a {
+    color: inherit;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+    html {
+      scroll-behavior: auto;
+    }
+  }
+</style>

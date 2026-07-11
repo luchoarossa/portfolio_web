@@ -1,0 +1,19 @@
+# build output
+dist/
+
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# environment
+.env
+.env.*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+
+# local tooling (machine-specific paths)
+.claude/
